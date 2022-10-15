@@ -1,16 +1,36 @@
-class ArticleModel {
-  const ArticleModel({
-    required this.id,
-    required this.authorId,
-    required this.content,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'article_model.freezed.dart';
+part 'article_model.g.dart';
 
-  final int id;
-  final int authorId;
-  final String content;
+@freezed
+class ArticleModel with _$ArticleModel {
+  factory ArticleModel(
+    int id,
+    @JsonKey(name: 'authorId') int authorId,
+    String content,
+  ) = _ArticleModel;
 
-  ArticleModel.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        authorId = json['author_id'],
-        content = json['content'];
+  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
+      _$ArticleModelFromJson(json);
 }
+
+//@JsonSerializable()
+//class ArticleModel {
+  //const ArticleModel({
+   // required this.id,
+    //required this.authorId,
+    //required this.content,
+  //});
+
+ // @JsonKey(name: 'id')
+  //final int id;
+ // @JsonKey(name: 'authorId')
+  //final int authorId;
+  //@JsonKey(name: 'content')
+  //final String content;
+
+  //factory ArticleModel.fromJson(Map<String, dynamic> json) =>
+      //_$ArticleModelFromJson(json);
+
+ /// Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
+//}
